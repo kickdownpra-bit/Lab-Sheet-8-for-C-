@@ -1,0 +1,264 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+// 1. Function to find a prime number
+bool isPrime(int n) {
+    if (n <= 1) return false;
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+// 2. Function to print the Fibonacci series
+void printFibonacci(int n) {
+    int t1 = 0, t2 = 1, nextTerm;
+    cout << "Fibonacci Series: ";
+    for (int i = 1; i <= n; ++i) {
+        cout << t1 << " ";
+        nextTerm = t1 + t2;
+        t1 = t2;
+        t2 = nextTerm;
+    }
+    cout << endl;
+}
+
+// 3. Function to apply the bubble sort technique on an array
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// 4. Function to copy a string from another string
+void copyString(char destination[], const char source[]) {
+    int i = 0;
+    while (source[i] != '\0') {
+        destination[i] = source[i];
+        i++;
+    }
+    destination[i] = '\0';
+}
+
+// 5. Function to find out the number of words in a string
+int countWords(string str) {
+    int count = 0;
+    bool inWord = false;
+    for (char c : str) {
+        if (c == ' ' || c == '\t' || c == '\n') {
+            inWord = false;
+        } else if (!inWord) {
+            inWord = true;
+            count++;
+        }
+    }
+    return count;
+}
+
+// 6. Function to search an element using binary search
+int binarySearch(int arr[], int size, int target) {
+    int left = 0, right = size - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == target) return mid;
+        if (arr[mid] < target) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+// 7. Function to find the sum of two matrices
+void addMatrices(int mat1[10][10], int mat2[10][10], int res[10][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            res[i][j] = mat1[i][j] + mat2[i][j];
+        }
+    }
+}
+
+// 8. Function to find out the sum of diagonal numbers in a matrix
+int sumOfDiagonal(int mat[10][10], int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += mat[i][i];
+    }
+    return sum;
+}
+
+// 9. Function to swap two numbers using call-by-reference
+void swapNumbers(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+// 10. Class Student
+class StudentRecord {
+    string name;
+    int roll_no;
+    float marks;
+public:
+    void inputDetails() {
+        cout << "Enter Name: ";
+        cin >> ws;
+        getline(cin, name);
+        cout << "Enter Roll Number: ";
+        cin >> roll_no;
+        cout << "Enter Marks: ";
+        cin >> marks;
+    }
+    void displayDetails() {
+        cout << "Name: " << name << ", Roll No: " << roll_no << ", Marks: " << marks << endl;
+    }
+};
+
+// 11. Class Car
+class Car {
+    string brand;
+    double price;
+public:
+    void setCarDetails(string b, double p) {
+        brand = b;
+        price = p;
+    }
+    void displayCar() {
+        cout << "Brand: " << brand << ", Price: ₹" << price << endl;
+    }
+};
+
+// 12. Class BankAccount demonstrating Encapsulation
+class BankAccount {
+    double balance;
+public:
+    BankAccount(double initialBalance) {
+        balance = initialBalance;
+    }
+    void deposit(double amount) {
+        if (amount > 0) balance += amount;
+    }
+    void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) balance -= amount;
+        else cout << "Invalid or insufficient funds for withdrawal!" << endl;
+    }
+    double getBalance() {
+        return balance;
+    }
+};
+
+// 13. Single Inheritance: Person -> StudentDetails
+class Person {
+protected:
+    string name;
+    int age;
+public:
+    void setPerson(string n, int a) {
+        name = n;
+        age = a;
+    }
+};
+
+class StudentDetails : public Person {
+    float marks;
+public:
+    void setStudentData(string n, int a, float m) {
+        setPerson(n, a);
+        marks = m;
+    }
+    void display() {
+        cout << "Name: " << name << ", Age: " << age << ", Marks: " << marks << endl;
+    }
+};
+
+// 14. Function Overloading (Compile-time polymorphism)
+class Calculator {
+public:
+    int add(int a, int b) {
+        return a + b;
+    }
+    double add(double a, double b) {
+        return a + b;
+    }
+};
+
+// 15. Abstraction using Abstract Class Shape
+class Shape {
+public:
+    virtual void area() = 0; // Pure virtual function
+};
+
+class Circle : public Shape {
+    double radius;
+public:
+    Circle(double r) : radius(r) {}
+    void area() override {
+        cout << "Area of Circle: " << 3.14159 * radius * radius << endl;
+    }
+};
+
+class Rectangle : public Shape {
+    double length, width;
+public:
+    double getLength() const { return length; }
+    void setLength(double length) { this->length = length; }
+    double getWidth() const { return width; }
+    void setWidth(double width) { this->width = width; }
+    Rectangle(double l, double w) : length(l), width(w) {}
+    void area() override {
+        cout << "Area of Rectangle: " << length * width << endl;
+    }
+};
+
+int main() {
+    // Demonstration of Task 1 to 15
+    cout << "--- Lab Sheet-08 Execution Demo ---" <<[cite: 1] << endl;
+    
+    // Task 1
+    cout << "1. Is 7 prime? " << (isPrime(7) ? "Yes" : "No") << endl;
+    
+    // Task 2
+    printFibonacci(5);
+    
+    // Task 3
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    bubbleSort(arr, n);
+    cout << "Sorted Array: ";
+    for(int i = 0; i < n; i++) cout << arr[i] << " ";
+    cout << endl;
+
+    // Task 9
+    int x = 10, y = 20;
+    swapNumbers(x, y);
+    cout << "Swapped numbers: x = " << x << ", y = " << y << endl;
+
+    // Task 12
+    BankAccount acc(5000.0);
+    acc.deposit(1500.0);
+    cout << "Bank Account Balance: ₹" << acc.getBalance() << endl;
+
+    // Task 14
+    Calculator calc;
+    cout << "Addition (int): " << calc.add(5, 10) << endl;
+    cout << "Addition (double): " << calc.add(5.5, 10.2) << endl;
+
+    // Task 15
+    Shape *s1 = new Circle(7.0);
+    Shape *s2 = new Rectangle(5.0, 4.0);
+    s1->area();
+    s2->area();
+
+    delete s1;
+    delete s2;
+
+    return 0;
+}
+```[cite: 1, 2]
